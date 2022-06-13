@@ -66,7 +66,7 @@ router.delete('/:id', auth, async (req, res) => {
     const checkIfExist = await findItemId(itemId)
     if (checkIfExist.length === 1) {
         const removeItem = await deleteItem(itemId)
-        if (removeItem) {
+        if (removeItem > 0) {
             resObj.success = true
             resObj.message = `Item removed`
         } else {
