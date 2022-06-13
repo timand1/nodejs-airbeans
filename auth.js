@@ -3,12 +3,9 @@ const { findAdmin } = require('./model/accountdb')
 
 async function auth(req, res, next) {
     const adminKey = req.headers['api-key']
-    if (adminKey) {
-
-        const apiKeys = await findAdmin(adminKey)
-        if (apiKeys.length > 0) {
-            next();
-        }
+    const apiKeys = await findAdmin(adminKey)
+    if (adminKey && apiKeys.length > 0) {
+        next();
     }
 
     else {
